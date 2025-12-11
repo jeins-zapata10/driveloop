@@ -5,10 +5,17 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex mt-3 items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-12 w-auto fill-current text-gray-800" />
+                    <a href="{{ route('dashboard') }}" class="mr-4">
+                        <x-application-logo class="block h-12 w-auto fill-current text-gray-800 " />
                     </a>
                 </div>
+                @guest
+                    <x-nav-link :href="auth()->check() ? route('vehiculos.create') : route('login')">
+                        {{ __('Publica tu vehiculo') }}
+                    </x-nav-link>
+
+
+                @endguest
 
                 @auth
                     <!-- Navigation Links -->
