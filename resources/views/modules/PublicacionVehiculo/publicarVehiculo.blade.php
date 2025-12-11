@@ -1,1 +1,6 @@
-esta es la vista para la publicacion de los vehiculos
+<x-app-layout>
+    
+    @include('modules.PublicacionVehiculo.components.formPublicVeh')
+
+    
+</x-app-layout>

@@ -1,0 +1,14 @@
+.fila__inputs_public{
+    background-color: rgb(0, 0, 0, 0.5); /* negro al 50% */
+    padding: 2rem;
+    border-radius: 5px;
+}
+.parrafos__pubVeh{
+    color: white;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 2rem;
+}
+.fila__inputs_public label{
+    color: white;
+}
