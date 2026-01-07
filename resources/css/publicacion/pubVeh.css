@@ -1,6 +1,4 @@
-/* =========================
-   Registro de vehículo (estilo como la imagen)
-   ========================= */
+/* ========================= Registro de vehículo ========================= */
 
 :root{
   --wine:#8c1f33;
@@ -93,7 +91,7 @@
   outline:none;
   background:#fff;
   color:var(--text);
-  border-radius:0; /* en la imagen se ve más “cuadrado” */
+  border-radius:0;
   font-size:14px;
 }
 
@@ -105,7 +103,7 @@
   box-shadow:0 0 0 2px rgba(176,31,60,.12);
 }
 
-/* ============ Select con flecha vino ============ */
+/* ============ Select con flecha ============ */
 .veh-select{
   position:relative;
 }
@@ -114,7 +112,7 @@
   appearance:none;
   -webkit-appearance:none;
   -moz-appearance:none;
-  padding-right:44px; /* espacio para la flecha */
+  padding-right:44px; 
   cursor:pointer;
 }
 
@@ -135,6 +133,49 @@
   background:#faf7f8;
   color:#777;
   cursor:not-allowed;
+}
+.grid__form__reg{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 20px;
+}
+.veh-field_1{
+  grid-column: 1 / 2;
+  grid-row: 1/2;
+}
+.veh-field_2{
+  grid-column: 2 / 3;
+  grid-row: 1/2;
+}
+.veh-field_3{
+  grid-column: 1 / 2;
+  grid-row: 2/3;
+  margin-top: 10px;
+}
+.veh-field_4{
+  grid-column: 2 / 3;
+  grid-row: 2/3;
+  margin-top: 10px;
+}
+.veh-field_5{
+  grid-column: 1 / 2;
+  grid-row: 3/4;
+  margin-top: 10px;
+}
+.veh-field_6{
+  grid-column: 2 / 3;
+  grid-row: 3/4;
+  margin-top: 10px;
+}
+.veh-field_7{
+  grid-column: 1 / 2;
+  grid-row: 4/5;
+  margin-top: 10px;
+}
+.veh-field_8{
+  grid-column: 2 / 3;
+  grid-row: 4/5;
+  margin-top: 10px;
 }
 
 /* ============ Bloques derecha ============ */

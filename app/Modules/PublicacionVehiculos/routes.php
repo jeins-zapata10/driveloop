@@ -17,4 +17,6 @@ Route::prefix('publi-vehiculo')->group(function () {
         ->name('vehiculo-ver');
     Route::post('/vehiculos/documentos', [VehiculoDocumentosController::class, 'store'])
     ->name('vehiculo.documentos.store');
+    Route::get('/departamentos/{coddepveh}/ciudades', [VehController::class, 'ciudadesPorDepartamento'])
+        ->name('departamentos.ciudades');
 });

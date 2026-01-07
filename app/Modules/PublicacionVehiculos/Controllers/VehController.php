@@ -7,6 +7,8 @@ use App\Models\MER\Clase;
 use App\Models\MER\Combustible;
 use App\Models\MER\Marca;
 use App\Models\MER\Accesorios;
+use App\Models\MER\CiudadVehiculo;
+use App\Models\MER\DepartamentoVehiculo;
 use App\Models\MER\Linea;
 use App\Models\MER\Vehiculo;
 use Illuminate\Http\Request;
@@ -21,6 +23,8 @@ class VehController extends Controller
             'vehiculoMarca' => Marca::all(),
             'vehiculoAccesorios' => Accesorios::all(),
             'vehiculoCombustible' => Combustible::all(),
+            'deptoVehiculo' => DepartamentoVehiculo::all(),
+
         ]);
     }
 
@@ -33,6 +37,17 @@ class VehController extends Controller
             ->get();
 
         return response()->json($lineas);
+    }
+
+    public function ciudadesPorDepartamento(int $coddepveh)
+    {
+        $ciudades = CiudadVehiculo::query()
+            ->select('codciuveh', 'nomciuveh')
+            ->where('coddepveh', $coddepveh)
+            ->orderBy('nomciuveh')
+            ->get();
+
+        return response()->json($ciudades);
     }
 
     public function create() {}
@@ -51,6 +66,8 @@ class VehController extends Controller
             'codcla' => ['required', 'integer'],
             'codcom' => ['required', 'integer'],
 
+            'codciuveh' => ['required', 'integer', 'exists:ciudad_vehiculo,codciuveh'],
+
             'accesorios' => ['nullable', 'array'],
             'accesorios.*' => ['integer', 'exists:accesorios,id']
         ]);
@@ -68,6 +85,7 @@ class VehController extends Controller
                 'codlin' => $data['codlin'],
                 'codcla' => $data['codcla'],
                 'codcom' => $data['codcom'],
+                'codciuveh' => $data['codciuveh']
             ]);
 
             $vehiculo->accesorios()->sync($data['accesorios'] ?? []);

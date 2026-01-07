@@ -45,7 +45,7 @@
         </div>
     </div>
 
-
+{{-- Inicio Selecctor dinamico de lineas segun marca de vehiculo --}}
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const marcaSelect = document.getElementById('marca');
@@ -100,6 +100,55 @@
             resetLineas('Seleccione una marca primero');
         });
     </script>
+    {{-- Fin Selecctor dinamico de lineas segun marca de vehiculo --}}
+    {{-- Inicio Selector dinámico de ciudades según departamento --}}
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+  const depto = document.getElementById('depto');
+  const ciudad = document.getElementById('municipio_bottom');
+
+  depto.addEventListener('change', async () => {
+    const coddepveh = depto.value;
+
+    ciudad.disabled = true;
+    ciudad.innerHTML = '<option value="" selected disabled>Cargando...</option>';
+
+    try {
+      const res = await fetch(`/publi-vehiculo/departamentos/${coddepveh}/ciudades`, {
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (!res.ok) throw new Error('No se pudieron cargar las ciudades');
+
+      const data = await res.json();
+
+      ciudad.innerHTML = '<option value="" selected disabled>Seleccione una ciudad</option>';
+
+      if (!data.length) {
+        ciudad.innerHTML = '<option value="" selected disabled>No hay ciudades para este departamento</option>';
+        ciudad.disabled = true;
+        return;
+      }
+
+      for (const c of data) {
+        const opt = document.createElement('option');
+        opt.value = c.codciuveh;
+        opt.textContent = c.nomciuveh;
+        ciudad.appendChild(opt);
+      }
+
+      ciudad.disabled = false;
+
+    } catch (err) {
+      console.error(err);
+      ciudad.innerHTML = '<option value="" selected disabled>Error cargando ciudades</option>';
+      ciudad.disabled = true;
+    }
+  });
+});
+</script>
+    {{-- Fin Selector dinámico de ciudades según departamento --}}
+
 
 
 </body>

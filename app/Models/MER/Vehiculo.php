@@ -46,7 +46,8 @@ class Vehiculo extends Model
 		'codmar' => 'int',
 		'codlin' => 'int',
 		'codcla' => 'int',
-		'codcom' => 'int'
+		'codcom' => 'int',
+		'codciuveh' => 'int'
 	];
 
 	protected $fillable = [
@@ -59,7 +60,8 @@ class Vehiculo extends Model
 		'codmar',
 		'codlin',
 		'codcla',
-		'codcom'
+		'codcom',
+		'codciuveh'
 	];
 
 	public function clase()
@@ -102,22 +104,23 @@ class Vehiculo extends Model
 		return $this->hasMany(Reserva::class, 'codveh');
 	}
 
-	
+
 
 	public function accesorios()
-    {
-        return $this->belongsToMany(
-            \App\Models\MER\Accesorios::class, 
-            'vehiculos_accesorios',            
-            'codveh',                          
-            'idacc',                           
-            'cod',                             
-            'id'                               
-        );
-    }
+	{
+		return $this->belongsToMany(
+			\App\Models\MER\Accesorios::class,
+			'vehiculos_accesorios',
+			'codveh',
+			'idacc',
+			'cod',
+			'id'
+		);
+	}
 
 
-
-
-
+	public function ciudad()
+	{
+		return $this->belongsTo(\App\Models\MER\CiudadVehiculo::class, 'codciuveh', 'codciuveh');
+	}
 }

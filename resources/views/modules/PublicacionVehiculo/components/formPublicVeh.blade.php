@@ -11,19 +11,21 @@
             @csrf
             <!-- Columna izquierda -->
             <div class="veh-col">
+                <div class="grid__form__reg">
                 <div class="veh-field">
                     {{-- <label class="veh-label" for="placa">Placa</label> --}}
                     <input type="hidden" name="vin" value="pendiente">
                 </div>
-                <div class="veh-field"> <label class="veh-label" for="clase">Clase de vehículo</label>
+                <div class="veh-field veh-field_1"> <label class="veh-label" for="clase">Clase de vehículo</label>
                     <div class="veh-select"> <select id="clase" name="codcla" required>
                             {{-- <option value="" selected disabled></option> --}}
                             @foreach ($vehiculoClase as $item)
                                 <option value="{{ $item->cod }}">{{ $item->des }}</option>
                             @endforeach
-                        </select> </div>
+                        </select> 
+                    </div>
                 </div>
-                <div class="veh-field"> <label class="veh-label" for="marca">Marca</label>
+                <div class="veh-field veh-field_2"> <label class="veh-label" for="marca">Marca</label>
                     <div class="veh-select"> <select id="marca" name="codmar" required>
                             {{-- <option value="" selected disabled></option> --}}
                             @foreach ($vehiculoMarca as $itemMarca)
@@ -31,7 +33,8 @@
                             @endforeach
                         </select> </div>
                 </div>
-                <div class="veh-field"> <label class="veh-label" for="linea">Linea</label>
+                
+                <div class="veh-field veh-field_3"> <label class="veh-label" for="linea">Linea</label>
                     <div class="veh-select"> <select id="linea" name="codlin" required disabled>
                             <option value="" selected disabled>Seleccione una marca primero</option>
                         </select>
@@ -42,19 +45,20 @@
                     <input id="placa" name="placa" type="text" required />
                 </div> --}}
 
-                <div class="veh-field"> <label class="veh-label" for="modelo_anio">Modelo
+                <div class="veh-field veh-field_4"> <label class="veh-label" for="modelo_anio">Modelo
                         (año)</label> <input id="modelo_anio" name="mod" type="number" inputmode="numeric"
                         min="1900" max="2026" step="1" placeholder="Ej: 2026" required />
                 </div>
-                <div class="veh-field">
+                
+                <div class="veh-field veh-field_5">
                     <label class="veh-label" for="pasajeros">Capacidad pasajeros</label>
                     <input id="pasajeros" name="pas" type="number" inputmode="numeric" min="1"
                         max="4" step="1" placeholder="" required />
                 </div>
-                <div class="veh-field"> <label class="veh-label" for="color">Color</label>
+                <div class="veh-field veh-field_6"> <label class="veh-label" for="color">Color</label>
                     <input id="color" name="col" type="text" required />
                 </div>
-                <div class="veh-field">
+                <div class="veh-field veh-field_7">
                     <label class="veh-label" for="Cilindraje">Cilindraje</label>
                     <input id="Cilindraje" name="cil" type="number" inputmode="numeric" min="1000"
                         max="2500" step="1" placeholder="Ej: 2000" required />
@@ -63,7 +67,7 @@
                     {{-- <label class="veh-label" for="placa">Poliza</label> --}}
                     <input type="hidden" name="codpol" value="1">
                 </div>
-                <div class="veh-field"> <label class="veh-label" for="combustible">Tipo de combustible</label>
+                <div class="veh-field veh-field_8"> <label class="veh-label" for="combustible">Tipo de combustible</label>
                     <div class="veh-select"> <select id="combustible" name="codcom" required>
                             {{-- <option value="" selected disabled></option> --}}
                             @foreach ($vehiculoCombustible as $itemComb)
@@ -71,6 +75,7 @@
                             @endforeach
                         </select>
                     </div>
+                </div>
                 </div>
             </div> <!-- Columna derecha -->
             <div class="veh-col">
@@ -86,27 +91,28 @@
                             @endforeach
                         </div>
                     </div>
-                    {{-- <div class="veh-block">
+                    <div class="veh-block">
                         <h3>Por favor seleccione la ubicación donde se encuentra el vehículo.</h3>
                         <div class="veh-row2">
                             <div class="veh-field"> <label class="veh-label" for="depto">Departamento</label>
                                 <div class="veh-select">
-                                    <select id="depto" name="depto" required>
-                                        <option value="" selected disabled></option>
-                                        <option value="valle">Valle del Cauca</option>
-                                    </select>
+                                    <select id="depto" name="coddepveh" required>
+    <option value="" selected disabled>Seleccione un departamento</option>
+    @foreach ($deptoVehiculo as $vehDpto)
+        <option value="{{ $vehDpto->coddepveh }}">{{ $vehDpto->nomdepveh }}</option>
+    @endforeach
+</select>
                                 </div>
                             </div>
                             <div class="veh-field"> <label class="veh-label" for="municipio_bottom">Municipio</label>
                                 <div class="veh-select">
-                                    <select id="municipio_bottom" name="municipio_bottom" required>
-                                        <option value="" selected disabled></option>
-                                        <option value="cali">Cali</option>
-                                    </select>
+                                    <select id="municipio_bottom" name="codciuveh" required disabled>
+    <option value="" selected disabled>Seleccione un departamento primero</option>
+</select>
                                 </div>
                             </div>
                         </div>
-                    </div> --}}
+                    </div>
                     <button class="veh-btn" type="submit">Siguiente</button>
                 </div>
         </form>
