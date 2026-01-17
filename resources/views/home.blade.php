@@ -25,9 +25,7 @@
                         <span class="skew-x-25 block">GENERA INGRESOS</span>
                     </a>
                 </div>
-
             </div>
         </div>
     </section>
-    
 </x-app-layout>
