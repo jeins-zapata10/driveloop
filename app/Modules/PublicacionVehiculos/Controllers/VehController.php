@@ -9,8 +9,8 @@ use App\Models\MER\Combustible;
 use App\Models\MER\Marca;
 use App\Models\MER\User;
 use App\Models\MER\Accesorios;
-use App\Models\MER\CiudadVehiculo;
-use App\Models\MER\DepartamentoVehiculo;
+use App\Models\MER\Ciudad;
+use App\Models\MER\Departamento;
 use App\Models\MER\Linea;
 use App\Models\MER\Vehiculo;
 use Illuminate\Http\Request;
@@ -25,7 +25,7 @@ class VehController extends Controller
             'vehiculoMarca' => Marca::all(),
             'vehiculoAccesorios' => Accesorios::all(),
             'vehiculoCombustible' => Combustible::all(),
-            'deptoVehiculo' => DepartamentoVehiculo::all(),
+            'deptoVehiculo' => Departamento::all(),
 
         ]);
     }
@@ -41,16 +41,17 @@ class VehController extends Controller
         return response()->json($lineas);
     }
 
-    public function ciudadesPorDepartamento(int $coddepveh)
+    public function ciudadesPorDepartamento(int $coddep)
     {
-        $ciudades = CiudadVehiculo::query()
-            ->select('codciuveh', 'nomciuveh')
-            ->where('coddepveh', $coddepveh)
-            ->orderBy('nomciuveh')
+        $ciudades = Ciudad::query()
+            ->select(['cod', 'des'])
+            ->where('coddep', $coddep)
+            ->orderBy('des')
             ->get();
 
         return response()->json($ciudades);
     }
+
 
     public function create() {}
 
@@ -62,13 +63,16 @@ class VehController extends Controller
             'col' => ['required', 'string', 'max:30'],
             'pas' => ['required', 'integer', 'min:1', 'max:99'],
             'cil' => ['required', 'integer', 'min:50', 'max:10000'],
-            'codpol' => ['nullable', 'integer'],
+            'codpol' => ['required', 'integer', 'exists:polizas_vehiculo,cod'],
+
             'codmar' => ['required', 'integer'],
             'codlin' => ['required', 'integer'],
             'codcla' => ['required', 'integer'],
             'codcom' => ['required', 'integer'],
 
-            'codciuveh' => ['required', 'integer', 'exists:ciudad_vehiculo,codciuveh'],
+            
+            'codciu' => ['required', 'integer', 'exists:ciudades,cod'],
+
 
             'accesorios' => ['nullable', 'array'],
             'accesorios.*' => ['integer', 'exists:accesorios,id']
@@ -83,12 +87,13 @@ class VehController extends Controller
                 'col' => $data['col'],
                 'pas' => $data['pas'],
                 'cil' => $data['cil'],
-                'codpol' => $data['codpol'] ?? null,
+                'codpol' => $data['codpol'],
                 'codmar' => $data['codmar'],
                 'codlin' => $data['codlin'],
                 'codcla' => $data['codcla'],
                 'codcom' => $data['codcom'],
-                'codciuveh' => $data['codciuveh']
+                'codciu' => $data['codciu']
+
             ]);
 
             $vehiculo->accesorios()->sync($data['accesorios'] ?? []);

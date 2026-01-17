@@ -15,11 +15,14 @@ Route::prefix('publi-vehiculo')->group(function () {
         ->name('marcas.lineas');
     Route::get('/docVeh', [VehController::class, 'vehiculo'])
         ->name('vehiculo-ver');
+
     Route::get('/vehiculos/{codveh}/documentos', [VehiculoDocumentosController::class, 'create'])
         ->middleware(['auth'])
         ->name('vehiculo.documentos.create');
+
     Route::post('/vehiculos/documentos', [VehiculoDocumentosController::class, 'store'])
         ->name('vehiculo.documentos.store');
-    Route::get('/departamentos/{coddepveh}/ciudades', [VehController::class, 'ciudadesPorDepartamento'])
+        
+    Route::get('/departamentos/{coddep}/ciudades', [VehController::class, 'ciudadesPorDepartamento'])
         ->name('departamentos.ciudades');
 });
