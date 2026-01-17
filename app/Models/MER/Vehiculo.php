@@ -48,7 +48,7 @@ class Vehiculo extends Model
 		'codlin' => 'int',
 		'codcla' => 'int',
 		'codcom' => 'int',
-		'codciuveh' => 'int'
+		'codciu' => 'int'
 	];
 
 	protected $fillable = [
@@ -63,7 +63,7 @@ class Vehiculo extends Model
 		'codlin',
 		'codcla',
 		'codcom',
-		'codciuveh'
+		'codciu',
 	];
 
 	public function clase()
@@ -123,7 +123,8 @@ class Vehiculo extends Model
 
 	public function ciudad()
 	{
-		return $this->belongsTo(\App\Models\MER\CiudadVehiculo::class, 'codciuveh', 'codciuveh');
+		return $this->belongsTo(Ciudad::class, 'cod', 'cod');
+
 	}
 
 	public function fotos()
