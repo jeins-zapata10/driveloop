@@ -75,7 +75,9 @@ class VehController extends Controller
 
 
             'accesorios' => ['nullable', 'array'],
-            'accesorios.*' => ['integer', 'exists:accesorios,id']
+            'accesorios.*' => ['integer', 'exists:accesorios,id'],
+            'prerent' => ['required', 'numeric', 'min:0']
+
         ]);
 
         return DB::transaction(function () use ($data) {
@@ -92,7 +94,8 @@ class VehController extends Controller
                 'codlin' => $data['codlin'],
                 'codcla' => $data['codcla'],
                 'codcom' => $data['codcom'],
-                'codciu' => $data['codciu']
+                'codciu' => $data['codciu'],
+                'prerent' => $data['prerent']
 
             ]);
 

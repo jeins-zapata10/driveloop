@@ -1,232 +1,247 @@
 <x-app-layout>
-  <section class="docs-card">
-    <h3 class="docs-title">Documentos del vehículo</h3>
+    <section class="docs-card">
+        <h3 class="docs-title">Documentos del vehículo</h3>
 
-    <form class="docs-form"
-          action="{{ route('vehiculo.documentos.store') }}"
-          method="POST"
-          enctype="multipart/form-data">
-      @csrf
-<div class="docs-grid">
-    <div class="docs-left">
-      {{-- PK del vehículo (FK) --}}
-      {{-- <input type="hidden" name="codveh" value="{{ $vehiculo->first()->cod }}"> --}}
+        <form class="docs-form" action="{{ route('vehiculo.documentos.store') }}" method="POST"
+            enctype="multipart/form-data">
+            @csrf
+            <div class="docs-grid">
+                <div class="docs-left">
 
-       <input type="hidden" name="codveh" value="{{ $vehiculo->cod }}">
-      {{-- Placa --}}
-      <div class="docs-row">
-        <label class="docs-label" for="placa">Placa del vehículo</label>
-        <input id="placa"
-               class="docs-input is-wide"
-               type="text"
-               name="placa"
-               placeholder="Ej: ABC123"
-               required
-               maxlength="10"
-               style="text-transform: uppercase;">
-        <small class="help">Escribe la placa tal como aparece en la tarjeta de propiedad.</small>
-      </div>
+                    <input type="hidden" name="codveh" value="{{ $vehiculo->cod }}">
+                    {{-- Placa --}}
+                    <div class="docs-row">
+                        <label class="docs-label" for="placa">Placa del vehículo</label>
+                        <input id="placa" class="docs-input is-wide" type="text" name="placa"
+                            placeholder="Ej: ABC123" required maxlength="10" style="text-transform: uppercase;">
+                        <small class="help">Escribe la placa tal como aparece en la tarjeta de propiedad.</small>
+                    </div>
 
-      {{-- Tarjeta de propiedad --}}
-      <div class="docs-row">
-        <label class="docs-label" for="doc_tarjeta">Tarjeta de propiedad</label>
+                    {{-- Tarjeta de propiedad --}}
+                    <div class="docs-row">
+                        <label class="docs-label" for="doc_tarjeta">Tarjeta de propiedad</label>
 
-        <div class="docs-actions">
-          <label class="btn-file">
-            Seleccionar archivo
-            <input id="doc_tarjeta"
-                   type="file"
-                   name="documentos[0][archivo]"
-                   accept=".pdf,.jpg,.jpeg,.png"
-                   required>
-          </label>
+                        <div class="docs-actions">
+                            <label class="btn-file">
+                                Seleccionar archivo
+                                <input id="doc_tarjeta" type="file" name="documentos[0][archivo]"
+                                    accept=".pdf,.jpg,.jpeg,.png" required>
+                            </label>
 
-          <span class="docs-status" id="status_tarjeta">Ningún archivo seleccionado</span>
-        </div>
+                            <span class="docs-status" id="status_tarjeta">Ningún archivo seleccionado</span>
+                        </div>
 
-        <input type="hidden" name="documentos[0][idtipdoc]" value="1">
-        <small class="help">Formatos permitidos: PDF, JPG, JPEG, PNG (máx. 10MB).</small>
-      </div>
+                        <input type="hidden" name="documentos[0][idtipdoc]" value="1">
+                        <small class="help">Formatos permitidos: PDF, JPG, JPEG, PNG (máx. 10MB).</small>
+                    </div>
 
-      {{-- SOAT --}}
-      <div class="docs-row">
-        <label class="docs-label" for="doc_soat">SOAT vigente</label>
+                    {{-- SOAT --}}
+                    <div class="docs-row">
+                        <label class="docs-label" for="doc_soat">SOAT vigente</label>
 
-        <div class="docs-actions">
-          <label class="btn-file">
-            Seleccionar archivo
-            <input id="doc_soat"
-                   type="file"
-                   name="documentos[1][archivo]"
-                   accept=".pdf,.jpg,.jpeg,.png"
-                   required>
-          </label>
+                        <div class="docs-actions">
+                            <label class="btn-file">
+                                Seleccionar archivo
+                                <input id="doc_soat" type="file" name="documentos[1][archivo]"
+                                    accept=".pdf,.jpg,.jpeg,.png" required>
+                            </label>
 
-          <span class="docs-status" id="status_soat">Ningún archivo seleccionado</span>
-        </div>
+                            <span class="docs-status" id="status_soat">Ningún archivo seleccionado</span>
+                        </div>
 
-        <input type="hidden" name="documentos[1][idtipdoc]" value="1">
-        <small class="help">Sube el SOAT vigente. Puede ser PDF o imagen.</small>
-      </div>
+                        <input type="hidden" name="documentos[1][idtipdoc]" value="2">
+                        <small class="help">Sube el SOAT vigente. Puede ser PDF o imagen.</small>
+                    </div>
 
-      {{-- Fotos --}}
-      <div class="docs-row">
-        <label class="docs-label" for="fotos">Fotos del vehículo</label>
+                    {{-- TECNOMECÁNICA --}}
+                    <div class="docs-row">
+                        <label class="docs-label" for="doc_tecno">Certificado tecnomecánico</label>
 
-        <label class="photo-drop" for="fotos">
-          <input id="fotos"
-                 type="file"
-                 name="fotos[]"
-                 accept="image/*"
-                 multiple>
+                        <div class="docs-actions">
+                            <label class="btn-file">
+                                Seleccionar archivo
+                                <input id="doc_tecno" type="file" name="documentos[2][archivo]"
+                                    accept=".pdf,.jpg,.jpeg,.png" required>
+                            </label>
 
-          <div class="photo-inner">
-            <div class="photo-text">Añadir fotos</div>
-            <div class="docs-status">Haz clic aquí para seleccionar hasta 10 imágenes</div>
-          </div>
-        </label>
+                            <span class="docs-status" id="status_tecno">Ningún archivo seleccionado</span>
+                        </div>
 
-        <small class="help" id="photoHelp">0/10 fotos seleccionadas</small>
-        <small class="error" id="photoError" style="display:none;"></small>
-      </div>
-</div>
-<div class="docs-right">
-      {{-- Panel preview --}}
-      <div class="photo-preview" id="photoPreview">
-        <p class="photo-empty" id="photoEmpty">Aquí se mostrarán las fotos seleccionadas (máximo 10).</p>
-      </div>
+                        {{-- OJO: este id debe ser el real en tu tabla tipo_documento --}}
+                        <input type="hidden" name="documentos[2][idtipdoc]" value="3">
+                        <small class="help">Sube la tecnomecánica vigente. PDF o imagen (máx. 10MB).</small>
+                    </div>
 
-      <button id="btnContinuar" type="submit" class="btn-submit">Continuar</button>
-       </div>
-       </div>
-    </form>
-  </section>
+                </div>
+                {{-- Fotos --}}
+                <div class="grid-fotos">
+                    <div class="docs-row">
+                        <label class="docs-label" for="fotos">Fotos del vehículo</label>
 
-  <script>
-  (function () {
-    const MAX = 10;
+                        <label class="photo-drop" for="fotos">
+                            <input id="fotos" type="file" name="fotos[]" accept="image/*" multiple>
 
-    const fotosInput   = document.getElementById('fotos');
-    const previewWrap  = document.getElementById('photoPreview');
-    const emptyText    = document.getElementById('photoEmpty');
-    const help         = document.getElementById('photoHelp');
-    const errorBox     = document.getElementById('photoError');
-    const btn          = document.getElementById('btnContinuar');
+                            <div class="photo-inner">
+                                <div class="photo-text">Añadir fotos</div>
+                                <div class="docs-status">Haz clic aquí para seleccionar hasta 10 imágenes</div>
+                            </div>
+                        </label>
 
-    const placaInput   = document.getElementById('placa');
-    const doc0         = document.getElementById('doc_tarjeta');
-    const doc1         = document.getElementById('doc_soat');
+                        <small class="help" id="photoHelp">0/10 fotos seleccionadas</small>
+                        <small class="error" id="photoError" style="display:none;"></small>
+                    </div>
 
-    const st0          = document.getElementById('status_tarjeta');
-    const st1          = document.getElementById('status_soat');
+                    <div class="docs-right">
+                        {{-- Panel preview --}}
+                        <div class="photo-preview" id="photoPreview">
+                            <p class="photo-empty" id="photoEmpty">Aquí se mostrarán las fotos seleccionadas (máximo
+                                10).
+                            </p>
+                        </div>
 
-    let selectedFiles = [];
+                        <button id="btnContinuar" type="submit" class="btn-submit">Continuar</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
 
-    function showError(msg) {
-      errorBox.textContent = msg;
-      errorBox.style.display = msg ? 'block' : 'none';
-    }
+    <script>
+        (function() {
+            const MAX = 10;
 
-    function updateFileStatus(input, statusEl){
-      if (!input || !statusEl) return;
-      statusEl.textContent = input.files?.length ? input.files[0].name : 'Ningún archivo seleccionado';
-      statusEl.classList.toggle('is-ok', !!input.files?.length);
-    }
+            const fotosInput = document.getElementById('fotos');
+            const previewWrap = document.getElementById('photoPreview');
+            const emptyText = document.getElementById('photoEmpty');
+            const help = document.getElementById('photoHelp');
+            const errorBox = document.getElementById('photoError');
+            const btn = document.getElementById('btnContinuar');
 
-    function updateButtonState() {
-      const placaOk = placaInput && placaInput.value.trim().length > 0;
-      const docsOk  = doc0 && doc0.files.length === 1 && doc1 && doc1.files.length === 1;
-      btn.disabled = !(placaOk && docsOk);
-    }
+            const placaInput = document.getElementById('placa');
+            const doc0 = document.getElementById('doc_tarjeta');
+            const doc1 = document.getElementById('doc_soat');
+            const doc2 = document.getElementById('doc_tecno');
 
-    function syncInputFiles() {
-      const dt = new DataTransfer();
-      selectedFiles.forEach(f => dt.items.add(f));
-      fotosInput.files = dt.files;
-    }
+            const st0 = document.getElementById('status_tarjeta');
+            const st1 = document.getElementById('status_soat');
+            const st2 = document.getElementById('status_tecno');
 
-    function render() {
-      previewWrap.querySelector('.photo-grid')?.remove();
+            let selectedFiles = [];
 
-      if (selectedFiles.length === 0) {
-        emptyText.style.display = 'block';
-        help.textContent = `0/${MAX} fotos seleccionadas`;
-        updateButtonState();
-        return;
-      }
+            function showError(msg) {
+                errorBox.textContent = msg;
+                errorBox.style.display = msg ? 'block' : 'none';
+            }
 
-      emptyText.style.display = 'none';
-      help.textContent = `${selectedFiles.length}/${MAX} fotos seleccionadas`;
+            function updateFileStatus(input, statusEl) {
+                if (!input || !statusEl) return;
+                statusEl.textContent = input.files?.length ? input.files[0].name : 'Ningún archivo seleccionado';
+                statusEl.classList.toggle('is-ok', !!input.files?.length);
+            }
 
-      const grid = document.createElement('div');
-      grid.className = 'photo-grid';
+            function updateButtonState() {
+                const placaOk = placaInput && placaInput.value.trim().length > 0;
+                const docsOk = doc0 && doc0.files.length === 1 &&
+                    doc1 && doc1.files.length === 1 &&
+                    doc2 && doc2.files.length === 1;
+                btn.disabled = !(placaOk && docsOk);
+            }
 
-      selectedFiles.forEach((file, idx) => {
-        const card = document.createElement('div');
-        card.className = 'photo-card';
+            function syncInputFiles() {
+                const dt = new DataTransfer();
+                selectedFiles.forEach(f => dt.items.add(f));
+                fotosInput.files = dt.files;
+            }
 
-        const img = document.createElement('img');
-        img.alt = file.name;
+            function render() {
+                previewWrap.querySelector('.photo-grid')?.remove();
 
-        const url = URL.createObjectURL(file);
-        img.src = url;
-        img.onload = () => URL.revokeObjectURL(url);
+                if (selectedFiles.length === 0) {
+                    emptyText.style.display = 'block';
+                    help.textContent = `0/${MAX} fotos seleccionadas`;
+                    updateButtonState();
+                    return;
+                }
 
-        const meta = document.createElement('div');
-        meta.className = 'meta';
-        meta.textContent = file.name;
+                emptyText.style.display = 'none';
+                help.textContent = `${selectedFiles.length}/${MAX} fotos seleccionadas`;
 
-        const removeBtn = document.createElement('button');
-        removeBtn.type = 'button';
-        removeBtn.textContent = 'Quitar';
-        removeBtn.addEventListener('click', () => {
-          selectedFiles.splice(idx, 1);
-          syncInputFiles();
-          render();
-        });
+                const grid = document.createElement('div');
+                grid.className = 'photo-grid';
 
-        card.appendChild(img);
-        card.appendChild(meta);
-        card.appendChild(removeBtn);
-        grid.appendChild(card);
-      });
+                selectedFiles.forEach((file, idx) => {
+                    const card = document.createElement('div');
+                    card.className = 'photo-card';
 
-      previewWrap.appendChild(grid);
-      updateButtonState();
-    }
+                    const img = document.createElement('img');
+                    img.alt = file.name;
 
-    fotosInput.addEventListener('change', () => {
-      showError('');
+                    const url = URL.createObjectURL(file);
+                    img.src = url;
+                    img.onload = () => URL.revokeObjectURL(url);
 
-      const incoming = Array.from(fotosInput.files || []);
-      const combined = [...selectedFiles, ...incoming];
+                    const meta = document.createElement('div');
+                    meta.className = 'meta';
+                    meta.textContent = file.name;
 
-      selectedFiles = combined.slice(0, MAX).filter(f => f.type.startsWith('image/'));
+                    const removeBtn = document.createElement('button');
+                    removeBtn.type = 'button';
+                    removeBtn.textContent = 'Quitar';
+                    removeBtn.addEventListener('click', () => {
+                        selectedFiles.splice(idx, 1);
+                        syncInputFiles();
+                        render();
+                    });
 
-      if (combined.length > MAX) {
-        showError(`Máximo ${MAX} fotos. Estás intentando seleccionar ${combined.length}.`);
-      }
+                    card.appendChild(img);
+                    card.appendChild(meta);
+                    card.appendChild(removeBtn);
+                    grid.appendChild(card);
+                });
 
-      syncInputFiles();
-      render();
-    });
+                previewWrap.appendChild(grid);
+                updateButtonState();
+            }
 
-    placaInput?.addEventListener('input', updateButtonState);
+            fotosInput.addEventListener('change', () => {
+                showError('');
 
-    doc0?.addEventListener('change', () => {
-      updateFileStatus(doc0, st0);
-      updateButtonState();
-    });
+                const incoming = Array.from(fotosInput.files || []);
+                const combined = [...selectedFiles, ...incoming];
 
-    doc1?.addEventListener('change', () => {
-      updateFileStatus(doc1, st1);
-      updateButtonState();
-    });
+                selectedFiles = combined.slice(0, MAX).filter(f => f.type.startsWith('image/'));
 
-    updateFileStatus(doc0, st0);
-    updateFileStatus(doc1, st1);
-    updateButtonState();
-    render();
-  })();
-  </script>
+                if (combined.length > MAX) {
+                    showError(`Máximo ${MAX} fotos. Estás intentando seleccionar ${combined.length}.`);
+                }
+
+                syncInputFiles();
+                render();
+            });
+
+            placaInput?.addEventListener('input', updateButtonState);
+
+            doc0?.addEventListener('change', () => {
+                updateFileStatus(doc0, st0);
+                updateButtonState();
+            });
+
+            doc1?.addEventListener('change', () => {
+                updateFileStatus(doc1, st1);
+                updateButtonState();
+            });
+
+            doc2?.addEventListener('change', () => {
+                updateFileStatus(doc2, st2);
+                updateButtonState();
+            });
+
+
+            updateFileStatus(doc0, st0);
+            updateFileStatus(doc1, st1);
+            updateFileStatus(doc2, st2);
+            updateButtonState();
+            render();
+        })();
+    </script>
 </x-app-layout>

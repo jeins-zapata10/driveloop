@@ -74,6 +74,13 @@
                             </select>
                         </div>
                     </div>
+                    
+                    <div class="veh-field veh-field_9">
+                        <label class="veh-label" for="prerent">Precio por día (24h)</label>
+                        <input id="prerent" name="prerent" type="number" inputmode="decimal" step="0.01"
+                            min="0" placeholder="Ej: 120000" required />
+                    </div>
+
                 </div>
             </div> <!-- Columna derecha -->
             <div class="veh-col">
@@ -187,7 +194,7 @@
         depto.addEventListener('change', async () => {
             const coddepveh = depto.value;
 
-            // ✅ AQUÍ VA: confirmar qué estás enviando realmente
+
             console.log(
                 'Depto seleccionado:',
                 depto.options[depto.selectedIndex].text,
@@ -206,7 +213,7 @@
                     }
                 });
 
-                // ✅ extra para ver si te devuelve HTML/otra cosa
+
                 if (!res.ok) {
                     const txt = await res.text();
                     console.error('HTTP', res.status, txt);
