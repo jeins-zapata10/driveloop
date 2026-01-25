@@ -48,7 +48,8 @@ class Vehiculo extends Model
 		'codlin' => 'int',
 		'codcla' => 'int',
 		'codcom' => 'int',
-		'codciu' => 'int'
+		'codciu' => 'int',
+		'prerent' => 'decimal:2'
 	];
 
 	protected $fillable = [
@@ -64,6 +65,7 @@ class Vehiculo extends Model
 		'codcla',
 		'codcom',
 		'codciu',
+		'prerent'
 	];
 
 	public function clase()
