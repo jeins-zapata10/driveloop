@@ -6,8 +6,8 @@
     @endif
 
     <section>
-        {{-- @include('modules.SoporteComunicacion.partials.tickets.section') --}}
-        @include('modules.PublicacionVehiculo.components.tarjVehiculos')
+        @include('modules.SoporteComunicacion.partials.tickets.section')
+        @include('modules.PublicacionVehiculo.components.tarjVehiculos') 
     </section>
 
 

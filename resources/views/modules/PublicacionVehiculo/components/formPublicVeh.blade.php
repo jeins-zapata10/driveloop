@@ -2,7 +2,6 @@
 
     <section class="card">
         <header class="head">
-            <h1>Juan Esteban</h1>
             <h1>Registro de vehículo</h1>
             <p>Por favor llene toda la información solicitada, se verificará en las próximas 48 horas.</p>
             <div class="rule"></div>
