@@ -1,21 +1,22 @@
 /* ========================= Registro de vehículo ========================= */
 
 :root{
-  --wine:#8c1f33;
-  --wine-2:#b01f3c;
+  --wine:#c81843;
+  --wine-2:#9a1b39;
   --border:#d9b3ba;
   --text:#222;
   --muted:#6b6b6b;
   --bg:#ffffff;
 }
 
-*{ box-sizing:border-box; }
+*{ 
+  box-sizing:border-box; 
+}
 
 .cont__gral_public{
   place-items:center;
   background:var(--bg);
   color:var(--text);
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 .card{
@@ -90,6 +91,7 @@
   color:var(--text);
   border-radius:0;
   font-size:14px;
+  border-radius: 10px;
 }
 
 .veh-field input::placeholder{ color:#9a9a9a; }
@@ -97,6 +99,7 @@
 .veh-field input:focus,
 .veh-select select:focus{
   border-color:var(--wine-2);
+  border-radius: 10px;
   box-shadow:0 0 0 2px rgba(176,31,60,.12);
 }
 
@@ -659,7 +662,7 @@ h3{
 }
 
 .content-prop{
-    border: 1px solid black;
+    border: 1px solid #c81843;
     width: 900px;
     height: 143px;
     border-radius: 10px;
@@ -686,7 +689,8 @@ h3{
     width: 147px;
     display: flex;
     flex-direction: column;
-    gap: 15px;    
+    gap: 15px; 
+      
 }
 
 .botones h3{
@@ -703,7 +707,7 @@ h3{
     color: var(--colorprincipal);
     text-align: center;
     border: 1px solid var(--colorprincipal);
-
+    border-radius: 8px; 
 }
 
 .editar{
@@ -711,6 +715,7 @@ h3{
     color: white;
     background: linear-gradient(to right, var(--colorprincipal), var(--colorsecundario));
     text-align: center;
+    border-radius: 8px; 
 }
 
 .Texto-princ {
