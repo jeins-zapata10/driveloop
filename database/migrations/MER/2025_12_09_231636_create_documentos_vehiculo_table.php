@@ -11,7 +11,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('documentos_vehiculo', function (Blueprint $table) {
-            $table->unsignedBigInteger('id')->primary();
+            $table->bigIncrements('id');
             $table->smallinteger('idtipdocveh')->index();
             $table->string('numdoc', 45);
             $table->string('empexp', 150);
