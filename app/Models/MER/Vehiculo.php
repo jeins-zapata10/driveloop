@@ -3,7 +3,6 @@
 namespace App\Models\MER;
 
 use App\Modules\PublicacionVehiculo\Models\Accesorio;
-use App\Modules\PublicacionVehiculo\Models\Accesorio;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\MER\FotoVehiculo;
