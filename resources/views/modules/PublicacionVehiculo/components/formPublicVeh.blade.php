@@ -33,20 +33,16 @@
                                 @endforeach
                             </select> </div>
                     </div>
-
                     <div class="veh-field veh-field_3"> <label class="veh-label" for="linea">Linea</label>
                         <div class="veh-select"> <select id="linea" name="codlin" required disabled>
                                 <option value="" selected disabled>Seleccione una marca primero</option>
                             </select>
                         </div>
                     </div>
-
-
                     <div class="veh-field veh-field_4"> <label class="veh-label" for="modelo_anio">Modelo
                             (año)</label> <input id="modelo_anio" name="mod" type="number" inputmode="numeric"
                             min="1900" max="2026" step="1" placeholder="Ej: 2026" required />
                     </div>
-
                     <div class="veh-field veh-field_5">
                         <label class="veh-label" for="pasajeros">Capacidad pasajeros</label>
                         <input id="pasajeros" name="pas" type="number" inputmode="numeric" min="1"
@@ -74,13 +70,11 @@
                             </select>
                         </div>
                     </div>
-                    
                     <div class="veh-field veh-field_9">
                         <label class="veh-label" for="prerent">Precio por día (24h)</label>
                         <input id="prerent" name="prerent" type="number" inputmode="decimal" step="0.01"
                             min="0" placeholder="Ej: 120000" required />
                     </div>
-
                 </div>
             </div> <!-- Columna derecha -->
             <div class="veh-col">
@@ -128,6 +122,10 @@
         </form>
     </section>
 </div>
+
+
+
+
 {{-- Inicio Selecctor dinamico de lineas segun marca de vehiculo --}}
 <script>
     document.addEventListener('DOMContentLoaded', () => {

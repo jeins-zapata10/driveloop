@@ -63,24 +63,16 @@ class VehController extends Controller
             'pas' => ['required', 'integer', 'min:1', 'max:99'],
             'cil' => ['required', 'integer', 'min:50', 'max:10000'],
             'codpol' => ['required', 'integer', 'exists:polizas_vehiculo,cod'],
-
             'codmar' => ['required', 'integer'],
             'codlin' => ['required', 'integer'],
             'codcla' => ['required', 'integer'],
             'codcom' => ['required', 'integer'],
-
-            
             'codciu' => ['required', 'integer', 'exists:ciudades,cod'],
-
-
             'accesorios' => ['nullable', 'array'],
             'accesorios.*' => ['integer', 'exists:accesorios,id'],
             'prerent' => ['required', 'numeric', 'min:0']
-
         ]);
-
         return DB::transaction(function () use ($data) {
-
             $vehiculo = Vehiculo::create([
                 'user_id' => Auth::id(),
                 'vin' => $data['vin'],
@@ -95,11 +87,8 @@ class VehController extends Controller
                 'codcom' => $data['codcom'],
                 'codciu' => $data['codciu'],
                 'prerent' => $data['prerent']
-
             ]);
-
             $vehiculo->accesorios()->sync($data['accesorios'] ?? []);
-
             // return redirect()->route('vehiculo-ver');
             return redirect()->route('vehiculo.documentos.create', ['codveh' => $vehiculo->cod]);
         });
