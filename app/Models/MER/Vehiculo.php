@@ -55,6 +55,7 @@ class Vehiculo extends Model
 
 	protected $fillable = [
 		'user_id',
+		'user_id',
 		'vin',
 		'mod',
 		'col',
@@ -127,7 +128,7 @@ class Vehiculo extends Model
 
 	public function ciudad()
 	{
-		return $this->belongsTo(Ciudad::class, 'cod', 'cod');
+		return $this->belongsTo(Ciudad::class, 'codciu', 'cod');
 
 	}
 
