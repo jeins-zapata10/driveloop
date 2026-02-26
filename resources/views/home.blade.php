@@ -28,14 +28,13 @@
             </div>
         </div>
     </section>
+
+
 </x-app-layout>
+<!-- Seccion de autos recomendados -->
 
-    <!-- Seccion de autos recomendados -->
+<section>
+    @include('modules.PublicacionVehiculo.components.tarjVehiculosPrinc') 
+</section>
 
-    <section>
-
-        @include('modules.PublicacionVehiculo.components.tarjVehiculosPrinc') 
-        
-    </section>
-
-    <!-- Seccion de autos recomendados -->
+<!-- Seccion de autos recomendados -->
