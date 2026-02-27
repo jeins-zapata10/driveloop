@@ -36,8 +36,9 @@ class Resena extends Model
 		'codres'
 	];
 
+
 	public function reserva()
 	{
-		return $this->belongsTo(Reserva::class, 'codres');
+     	return $this->belongsTo(Reserva::class, 'codres', 'cod');
 	}
 }

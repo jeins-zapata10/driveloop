@@ -29,8 +29,16 @@
                 @include('modules.SoporteComunicacion.partials.tickets.section')
             </x-settings-tab>
 
+            <!-- Reseñas -->
+              <x-settings-tab name="reviews" label="Reseñas">
+                <div class="bg-white p-6 border border-gray-400 rounded-lg shadow-sm">
+                    @include('modules.CalificacionResena.partials.reviews.section')
+                </div>
+            </x-settings-tab>
+
             
 
         </x-settings-layout>
     </div>
 </x-page>
+
