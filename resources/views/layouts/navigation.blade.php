@@ -16,6 +16,7 @@
                     Inicio
                 </x-breeze::nav-link>
 
+                {{-- USUARIO NO AUTENTICADO --}}
                 @guest
                     <x-breeze::nav-link :href="route('informacion.nosotros')">
                         Nosotros
@@ -25,12 +26,10 @@
                         Servicios
                     </x-breeze::nav-link>
 
-                    {{-- ALQUILAR → MODAL --}}
                     <x-breeze::nav-link href="#" x-on:click.prevent="$dispatch('open-modal', 'search-car')">
                         Alquilar
                     </x-breeze::nav-link>
 
-                    {{-- PUBLICAR → LOGIN AUTOMÁTICO --}}
                     <x-breeze::nav-link :href="route('publicacion.vehiculo')">
                         Publicar
                     </x-breeze::nav-link>
@@ -40,8 +39,9 @@
                     </x-breeze::nav-link>
                 @endguest
 
+                {{-- USUARIO AUTENTICADO --}}
                 @auth
-                    {{-- ALQUILAR → MODAL --}}
+
                     <x-breeze::nav-link href="#" x-on:click.prevent="$dispatch('open-modal', 'search-car')">
                         Alquilar
                     </x-breeze::nav-link>
@@ -53,6 +53,22 @@
                     <x-breeze::nav-link :href="route('dashboard')">
                         Dashboard
                     </x-breeze::nav-link>
+
+                    {{-- 🔐 SOLO ADMINISTRADOR --}}
+                    @role('Administrador')
+
+                        <x-breeze::nav-link :href="route('soporte.docs.index')"
+                            :active="request()->routeIs('soporte.docs.*')">
+                            Documentos
+                        </x-breeze::nav-link>
+
+                        <x-breeze::nav-link :href="route('tickets.soporte.index')"
+                            :active="request()->routeIs('tickets.soporte.*')">
+                            Tickets
+                        </x-breeze::nav-link>
+
+                    @endrole
+
                 @endauth
 
             </div>
@@ -63,6 +79,7 @@
                 {{-- BUSCADOR --}}
                 <div class="flex items-center rounded-full px-4 ring-1 ring-gray-300 mx-2 w-48 hover:ring-dl transition-all cursor-pointer"
                     x-on:click="$dispatch('open-modal', 'search-car')">
+
                     <svg class="h-5 w-5 text-black" fill="none" stroke="currentColor" stroke-width="2"
                         viewBox="0 0 24 24">
                         <path d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1 0 5.65 5.65a7.5 7.5 0 0 0 10.6 10.6Z" />
@@ -103,7 +120,6 @@
                         </x-slot>
                     </x-breeze::dropdown>
                 @else
-                    {{-- ICONO ORIGINAL --}}
                     <x-breeze::dropdown align="right" width="48">
                         <x-slot name="trigger">
                             <button
@@ -136,6 +152,7 @@
         </div>
     </div>
 
+    {{-- MENÚ MÓVIL --}}
     <div x-show="open" class="xl:hidden bg-white p-4 space-y-2">
 
         <a href="{{ route('home') }}">Inicio</a>
@@ -159,9 +176,14 @@
 
             <a href="{{ route('publicacion.vehiculo') }}">Publicar</a>
             <a href="{{ route('dashboard') }}">Dashboard</a>
+
+            {{-- 🔐 SOLO ADMIN --}}
+            @role('Administrador')
+                <a href="{{ route('soporte.docs.index') }}">Documentos</a>
+                <a href="{{ route('tickets.soporte.index') }}">Tickets</a>
+            @endrole
         @endauth
 
-        {{-- BUSCADOR MÓVIL --}}
         <div class="mt-4 cursor-pointer"
             x-on:click="$dispatch('open-modal', 'search-car')">
             🔍 Buscar
