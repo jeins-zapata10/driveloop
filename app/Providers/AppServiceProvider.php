@@ -50,7 +50,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with('marcas', \App\Models\MER\Marca::all());
         });
 
-        \View::composer('modules.BusquedaReserva.partials.modals.search-car', function ($view) {
+        View::composer('modules.BusquedaReserva.partials.modals.search-car', function ($view) {
             $view->with('marcas', \App\Models\MER\Marca::orderBy('des')->get());
         });
     }
