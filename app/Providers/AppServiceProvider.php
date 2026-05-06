@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\View;
 use Illuminate\Validation\Rules\Password;
+use App\Models\MER\Marca;
 
 class AppServiceProvider extends ServiceProvider
 {
